@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "typescript-compile": "tsc --outDir dist",
-    "run": "npx odata-to-ts",
+    "run": "npx odata-to-ts http://127.0.0.1:8080/$metadata.xml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
