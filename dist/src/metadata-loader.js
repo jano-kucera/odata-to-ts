@@ -14,15 +14,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MetadataLoader = void 0;
 const axios_1 = __importDefault(require("axios"));
-const fs_1 = __importDefault(require("fs"));
 class MetadataLoader {
     constructor(url) {
         this.url = url;
     }
-    downloadFile(destination) {
+    readFile() {
         return __awaiter(this, void 0, void 0, function* () {
-            const response = yield axios_1.default.get(this.url, { responseType: 'stream' });
-            response.data.pipe(fs_1.default.createWriteStream(destination));
+            const response = yield axios_1.default.get(this.url);
+            return response.data;
         });
     }
 }
