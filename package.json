@@ -15,6 +15,9 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.11.30"
+  },
+  "bin": {
+    "odata-to-ts": "./dist/index.js"
   }
 }
 
