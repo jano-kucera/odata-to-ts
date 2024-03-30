@@ -10,7 +10,7 @@ const map = {
     "Edm.Guid": "string",
     "Edm.Int16": "number",
     "Edm.Int32": "number",
-    "Edm.Int64": "number",
+    "Edm.Int64": "bigint",
     "Edm.SByte": "number",
     "Edm.Single": "number",
     "Edm.Stream": "Uint8Array",

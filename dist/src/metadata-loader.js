@@ -4,20 +4,20 @@ import xmlJs from "xml-js";
  * Class for loading metadata from a URL.
  */
 export class MetadataLoader {
-    url;
+    config;
     /**
      * Constructor.
-     * @param url The URL to load the metadata from.
+     * @param config Config.
      */
-    constructor(url) {
-        this.url = url;
+    constructor(config) {
+        this.config = config;
     }
     /**
      * Loads the metadata content from the URL.
      * @returns The metadata content transformed to object.
      */
     async load() {
-        let metadataXml = (await axios.get(this.url)).data;
+        let metadataXml = (await axios.get(this.config.xmlUrl)).data;
         return xmlJs.xml2js(metadataXml, { compact: false });
     }
 }

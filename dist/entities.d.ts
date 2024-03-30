@@ -5,117 +5,117 @@ export interface Category {
     Picture?: Uint8Array;
 }
 export interface CustomerDemographic {
-    CustomerTypeID: string;
     CustomerDesc?: string;
+    CustomerTypeID: string;
 }
 export interface Customer {
-    CustomerID: string;
+    Address?: string;
+    City?: string;
     CompanyName: string;
     ContactName?: string;
     ContactTitle?: string;
-    Address?: string;
-    City?: string;
-    Region?: string;
-    PostalCode?: string;
     Country?: string;
-    Phone?: string;
+    CustomerID: string;
     Fax?: string;
+    Phone?: string;
+    PostalCode?: string;
+    Region?: string;
 }
 export interface Employee {
+    Address?: string;
+    BirthDate?: Date;
+    City?: string;
+    Country?: string;
     EmployeeID: number;
-    LastName: string;
+    Extension?: string;
     FirstName: string;
+    HireDate?: Date;
+    HomePhone?: string;
+    LastName: string;
+    Notes?: string;
+    Photo?: Uint8Array;
+    PhotoPath?: string;
+    PostalCode?: string;
+    Region?: string;
+    ReportsTo?: number;
     Title?: string;
     TitleOfCourtesy?: string;
-    BirthDate?: Date;
-    HireDate?: Date;
-    Address?: string;
-    City?: string;
-    Region?: string;
-    PostalCode?: string;
-    Country?: string;
-    HomePhone?: string;
-    Extension?: string;
-    Photo?: Uint8Array;
-    Notes?: string;
-    ReportsTo?: number;
-    PhotoPath?: string;
 }
 export interface Order_Detail {
+    Discount: number;
     OrderID: number;
     ProductID: number;
-    UnitPrice: number;
     Quantity: number;
-    Discount: number;
+    UnitPrice: number;
 }
 export interface Order {
-    OrderID: number;
     CustomerID?: string;
     EmployeeID?: number;
-    OrderDate?: Date;
-    RequiredDate?: Date;
-    ShippedDate?: Date;
-    ShipVia?: number;
     Freight?: number;
-    ShipName?: string;
+    OrderDate?: Date;
+    OrderID: number;
+    RequiredDate?: Date;
     ShipAddress?: string;
     ShipCity?: string;
-    ShipRegion?: string;
-    ShipPostalCode?: string;
     ShipCountry?: string;
+    ShipName?: string;
+    ShippedDate?: Date;
+    ShipPostalCode?: string;
+    ShipRegion?: string;
+    ShipVia?: number;
 }
 export interface Product {
+    CategoryID?: number;
+    Discontinued: boolean;
     ProductID: number;
     ProductName: string;
-    SupplierID?: number;
-    CategoryID?: number;
     QuantityPerUnit?: string;
+    ReorderLevel?: number;
+    SupplierID?: number;
     UnitPrice?: number;
     UnitsInStock?: number;
     UnitsOnOrder?: number;
-    ReorderLevel?: number;
-    Discontinued: boolean;
 }
 export interface Region {
-    RegionID: number;
     RegionDescription: string;
+    RegionID: number;
 }
 export interface Shipper {
-    ShipperID: number;
     CompanyName: string;
     Phone?: string;
+    ShipperID: number;
 }
 export interface Supplier {
-    SupplierID: number;
+    Address?: string;
+    City?: string;
     CompanyName: string;
     ContactName?: string;
     ContactTitle?: string;
-    Address?: string;
-    City?: string;
-    Region?: string;
-    PostalCode?: string;
     Country?: string;
-    Phone?: string;
     Fax?: string;
     HomePage?: string;
+    Phone?: string;
+    PostalCode?: string;
+    Region?: string;
+    SupplierID: number;
 }
 export interface Territory {
-    TerritoryID: string;
-    TerritoryDescription: string;
     RegionID: number;
+    TerritoryDescription: string;
+    TerritoryID: string;
 }
 export interface Alphabetical_list_of_product {
+    CategoryID?: number;
+    CategoryName: string;
+    Discontinued: boolean;
     ProductID: number;
     ProductName: string;
-    SupplierID?: number;
-    CategoryID?: number;
     QuantityPerUnit?: string;
+    ReorderLevel?: number;
+    SupplierID?: number;
     UnitPrice?: number;
     UnitsInStock?: number;
     UnitsOnOrder?: number;
-    ReorderLevel?: number;
-    Discontinued: boolean;
-    CategoryName: string;
 }
 export interface Category_Sales_for_1997 {
     CategoryName: string;
@@ -132,67 +132,67 @@ export interface Customer_and_Suppliers_by_City {
     Relationship: string;
 }
 export interface Invoice {
-    ShipName?: string;
-    ShipAddress?: string;
-    ShipCity?: string;
-    ShipRegion?: string;
-    ShipPostalCode?: string;
-    ShipCountry?: string;
-    CustomerID?: string;
-    CustomerName: string;
     Address?: string;
     City?: string;
-    Region?: string;
-    PostalCode?: string;
     Country?: string;
-    Salesperson: string;
-    OrderID: number;
-    OrderDate?: Date;
-    RequiredDate?: Date;
-    ShippedDate?: Date;
-    ShipperName: string;
-    ProductID: number;
-    ProductName: string;
-    UnitPrice: number;
-    Quantity: number;
+    CustomerID?: string;
+    CustomerName: string;
     Discount: number;
     ExtendedPrice?: number;
     Freight?: number;
+    OrderDate?: Date;
+    OrderID: number;
+    PostalCode?: string;
+    ProductID: number;
+    ProductName: string;
+    Quantity: number;
+    Region?: string;
+    RequiredDate?: Date;
+    Salesperson: string;
+    ShipAddress?: string;
+    ShipCity?: string;
+    ShipCountry?: string;
+    ShipName?: string;
+    ShippedDate?: Date;
+    ShipperName: string;
+    ShipPostalCode?: string;
+    ShipRegion?: string;
+    UnitPrice: number;
 }
 export interface Order_Details_Extended {
+    Discount: number;
+    ExtendedPrice?: number;
     OrderID: number;
     ProductID: number;
     ProductName: string;
-    UnitPrice: number;
     Quantity: number;
-    Discount: number;
-    ExtendedPrice?: number;
+    UnitPrice: number;
 }
 export interface Order_Subtotal {
     OrderID: number;
     Subtotal?: number;
 }
 export interface Orders_Qry {
-    OrderID: number;
-    CustomerID?: string;
-    EmployeeID?: number;
-    OrderDate?: Date;
-    RequiredDate?: Date;
-    ShippedDate?: Date;
-    ShipVia?: number;
-    Freight?: number;
-    ShipName?: string;
-    ShipAddress?: string;
-    ShipCity?: string;
-    ShipRegion?: string;
-    ShipPostalCode?: string;
-    ShipCountry?: string;
-    CompanyName: string;
     Address?: string;
     City?: string;
-    Region?: string;
-    PostalCode?: string;
+    CompanyName: string;
     Country?: string;
+    CustomerID?: string;
+    EmployeeID?: number;
+    Freight?: number;
+    OrderDate?: Date;
+    OrderID: number;
+    PostalCode?: string;
+    Region?: string;
+    RequiredDate?: Date;
+    ShipAddress?: string;
+    ShipCity?: string;
+    ShipCountry?: string;
+    ShipName?: string;
+    ShippedDate?: Date;
+    ShipPostalCode?: string;
+    ShipRegion?: string;
+    ShipVia?: number;
 }
 export interface Product_Sales_for_1997 {
     CategoryName: string;
@@ -205,10 +205,10 @@ export interface Products_Above_Average_Price {
 }
 export interface Products_by_Category {
     CategoryName: string;
+    Discontinued: boolean;
     ProductName: string;
     QuantityPerUnit?: string;
     UnitsInStock?: number;
-    Discontinued: boolean;
 }
 export interface Sales_by_Category {
     CategoryID: number;
@@ -217,18 +217,18 @@ export interface Sales_by_Category {
     ProductSales?: number;
 }
 export interface Sales_Totals_by_Amount {
-    SaleAmount?: number;
-    OrderID: number;
     CompanyName: string;
+    OrderID: number;
+    SaleAmount?: number;
     ShippedDate?: Date;
 }
 export interface Summary_of_Sales_by_Quarter {
-    ShippedDate?: Date;
     OrderID: number;
+    ShippedDate?: Date;
     Subtotal?: number;
 }
 export interface Summary_of_Sales_by_Year {
-    ShippedDate?: Date;
     OrderID: number;
+    ShippedDate?: Date;
     Subtotal?: number;
 }

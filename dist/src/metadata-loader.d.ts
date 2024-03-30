@@ -1,14 +1,15 @@
 import xmlJs from "xml-js";
+import { OdataToTsConfig } from './config.js';
 /**
  * Class for loading metadata from a URL.
  */
 export declare class MetadataLoader {
-    private url;
+    private config;
     /**
      * Constructor.
-     * @param url The URL to load the metadata from.
+     * @param config Config.
      */
-    constructor(url: string);
+    constructor(config: OdataToTsConfig);
     /**
      * Loads the metadata content from the URL.
      * @returns The metadata content transformed to object.
