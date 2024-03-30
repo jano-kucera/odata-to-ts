@@ -10,16 +10,19 @@
   "description": "Package for transforming odata metadata to typescript interfaces",
   "devDependencies": {
     "@types/node": "^20.11.30",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "xml-js": "^1.6.11"
   },
   "license": "MIT",
   "main": "index.js",
   "name": "odata-to-ts",
   "scripts": {
     "run": "npx odata-to-ts http://127.0.0.1:8080/$metadata.xml",
+    "run:northwind": "npx odata-to-ts https://services.odata.org/V4/Northwind/Northwind.svc/$metadata",
     "tsc": "tsc --outDir dist"
   },
   "type": "module",
   "types": "./dist/index.d.ts",
   "version": "0.0.3"
 }
+

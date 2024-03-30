@@ -1,3 +1,4 @@
+import xmlJs from "xml-js";
 /**
  * Class for loading metadata from a URL.
  */
@@ -9,8 +10,8 @@ export declare class MetadataLoader {
      */
     constructor(url: string);
     /**
-     * Reads the metadata content from the URL.
-     * @returns The metadata content.
+     * Loads the metadata content from the URL.
+     * @returns The metadata content transformed to object.
      */
-    readFile(): Promise<string>;
+    load(): Promise<xmlJs.Element>;
 }

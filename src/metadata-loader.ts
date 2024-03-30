@@ -1,4 +1,5 @@
 import axios from 'axios';
+import xmlJs from "xml-js"
 
 /** 
  * Class for loading metadata from a URL.
@@ -12,10 +13,11 @@ export class MetadataLoader {
     constructor(private url: string) { }
 
     /**
-     * Reads the metadata content from the URL.
-     * @returns The metadata content.
+     * Loads the metadata content from the URL.
+     * @returns The metadata content transformed to object.
      */
-    public async readFile(): Promise<string> {
-        return (await axios.get(this.url)).data;
+    public async load(): Promise<xmlJs.Element> {
+        let metadataXml: string = (await axios.get(this.url)).data;
+        return xmlJs.xml2js(metadataXml, { compact: false }) as xmlJs.Element;
     }
 }
