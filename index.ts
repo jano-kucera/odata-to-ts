@@ -16,7 +16,7 @@ const schema: JSONSchemaType<OdataToTsConfig> = {
         outputDir: { type: "string" },
         xmlUrl: { type: "string" },
     },
-    required: ["outputDir"],
+    required: ["outputDir", "xmlUrl"],
 };
 
 let config;
