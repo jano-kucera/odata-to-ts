@@ -12,7 +12,7 @@ const schema = {
         outputDir: { type: "string" },
         xmlUrl: { type: "string" },
     },
-    required: ["outputDir"],
+    required: ["outputDir", "xmlUrl"],
 };
 let config;
 try {
