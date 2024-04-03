@@ -1,3 +1,4 @@
+/** Map of primitive types. */
 const map = {
     "Edm.Binary": "Uint8Array",
     "Edm.Boolean": "boolean",
@@ -15,13 +16,42 @@ const map = {
     "Edm.Single": "number",
     "Edm.Stream": "Uint8Array",
     "Edm.String": "string",
-    "Edm.TimeOfDay": "string"
+    "Edm.TimeOfDay": "string",
+    "Edm.Geography": "GeoJSON.GeoJsonObject",
+    "Edm.GeographyPoint": "GeoJSON.Point",
+    "Edm.GeographyLineString": "GeoJSON.LineString",
+    "Edm.GeographyPolygon": "GeoJSON.Polygon",
+    "Edm.GeographyMultiPoint": "GeoJSON.MultiPoint",
+    "Edm.GeographyMultiLineString": "GeoJSON.MultiLineString",
+    "Edm.GeographyMultiPolygon": "GeoJSON.MultiPolygon",
+    "Edm.GeographyCollection": "GeoJSON.GeometryCollection",
+    "Edm.Geometry": "GeoJSON.GeoJsonObject",
+    "Edm.GeometryPoint": "GeoJSON.Point",
+    "Edm.GeometryLineString": "GeoJSON.LineString",
+    "Edm.GeometryPolygon": "GeoJSON.Polygon",
+    "Edm.GeometryMultiPoint": "GeoJSON.MultiPoint",
+    "Edm.GeometryMultiLineString": "GeoJSON.MultiLineString",
+    "Edm.GeometryMultiPolygon": "GeoJSON.MultiPolygon",
+    "Edm.GeometryCollection": "GeoJSON.GeometryCollection",
 };
+/** Collection(Edm.ANY) regex. */
+const collectionRegex = /Collection\((.*?)\)/;
 /**
  * Converts odata type into typescript type.
  * @param type Type to convert.
+ * @param namespace Namespace of the types.
  * @returns Converted type.
  */
-export function mapType(type) {
-    return map[type] || type;
+export function convertType(type, namespace) {
+    if (type.startsWith("Edm.")) {
+        return map[type];
+    }
+    if (type.startsWith("Collection(")) {
+        let t = type.match(collectionRegex)?.[1];
+        return convertType(t, namespace);
+    }
+    if (type.startsWith(namespace)) {
+        return type.substring(namespace.length);
+    }
+    return type;
 }

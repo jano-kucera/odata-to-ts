@@ -1,6 +1,6 @@
 import xmlJs from "xml-js";
 import * as fs from 'fs';
-import { mapType } from "./map-type.js";
+import { convertType } from "./map-type.js";
 import { OdataToTsConfig } from "./config.js";
 
 /**
@@ -32,15 +32,19 @@ export class MetadataTransformer {
         let file = fs.createWriteStream(this.config.outputDir + "/entities.d.ts",);
 
         this.schemas?.forEach(s => {
-            s.elements?.filter(e => e.name === "EntityType").forEach(e => {
-                file.write(`export interface ${e.attributes?.Name} {\n`);
+            let namespace = `${s.attributes?.Namespace as string}.`;
+
+            s.elements?.filter(e => e.name === "EntityType" || e.name === "ComplexType").forEach(e => {
+                let base = e.attributes?.BaseType ? `extends ${convertType(e.attributes?.BaseType as string, namespace)} ` : "";
+
+                file.write(`export interface ${e.attributes?.Name} ${base}{\n`);
 
                 e.elements?.filter(p => p.name === "Property")
                     .sort((p1, p2) => (p1.attributes?.Name as string).localeCompare(p2.attributes?.Name as string))
                     .forEach(p => {
                         let name = p.attributes?.Name;
                         let nullable = p.attributes?.Nullable === "false" ? "" : "?";
-                        let type = mapType(p.attributes?.Type as string);
+                        let type = convertType(p.attributes?.Type as string, namespace);
 
                         file.write(`    ${name}${nullable}: ${type};\n`);
                     });

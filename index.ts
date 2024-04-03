@@ -4,32 +4,19 @@ import * as fs from 'fs';
 
 import { MetadataLoader } from "./src/metadata-loader.js";
 import { MetadataTransformer } from "./src/metadata-transformer.js";
-import ajvModule, { JSONSchemaType } from 'ajv';
 import { OdataToTsConfig } from './src/config.js';
 
-// JSON schema validation
-const Ajv = ajvModule.default;
-const ajv = new Ajv();
-const schema: JSONSchemaType<OdataToTsConfig> = {
-    type: "object",
-    properties: {
-        outputDir: { type: "string" },
-        xmlUrl: { type: "string" },
-    },
-    required: ["outputDir", "xmlUrl"],
+// defaults
+let config: OdataToTsConfig = {
+    outputDir: "odata",
+    xmlUrl: "",
 };
 
-let config;
+// load user config
 try {
-    config = JSON.parse(fs.readFileSync("odata-to-ts.config.json", "utf8"));
+    Object.assign(config, JSON.parse(fs.readFileSync("odata-to-ts.config.json", "utf8")));
 } catch (error) {
     console.error("odata-to-ts.config.json not found: ", error);
-    process.exit(1);
-}
-
-let validate = ajv.compile(schema);
-if (!validate(schema, config)) {
-    console.error("Invalid configuration: ", validate.errors);
     process.exit(1);
 }
 
@@ -40,4 +27,3 @@ let metadata = await loader.load();
 // transform metadata
 let transformer = new MetadataTransformer(metadata, config);
 transformer.transformEntityTypes();
-

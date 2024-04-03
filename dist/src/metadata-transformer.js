@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { mapType } from "./map-type.js";
+import { convertType } from "./map-type.js";
 /**
  * Metadata transformer.
  */
@@ -30,14 +30,16 @@ export class MetadataTransformer {
         }
         let file = fs.createWriteStream(this.config.outputDir + "/entities.d.ts");
         this.schemas?.forEach(s => {
-            s.elements?.filter(e => e.name === "EntityType").forEach(e => {
-                file.write(`export interface ${e.attributes?.Name} {\n`);
+            let namespace = `${s.attributes?.Namespace}.`;
+            s.elements?.filter(e => e.name === "EntityType" || e.name === "ComplexType").forEach(e => {
+                let base = e.attributes?.BaseType ? `extends ${convertType(e.attributes?.BaseType, namespace)} ` : "";
+                file.write(`export interface ${e.attributes?.Name} ${base}{\n`);
                 e.elements?.filter(p => p.name === "Property")
                     .sort((p1, p2) => (p1.attributes?.Name).localeCompare(p2.attributes?.Name))
                     .forEach(p => {
                     let name = p.attributes?.Name;
                     let nullable = p.attributes?.Nullable === "false" ? "" : "?";
-                    let type = mapType(p.attributes?.Type);
+                    let type = convertType(p.attributes?.Type, namespace);
                     file.write(`    ${name}${nullable}: ${type};\n`);
                 });
                 file.write(`}\n\n`);
