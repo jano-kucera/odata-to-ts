@@ -9,6 +9,7 @@ import { OdataToTsConfig } from './src/config.js';
 // defaults
 let config: OdataToTsConfig = {
     outputDir: "odata",
+    enumMode: "string",
     xmlUrl: "",
 };
 
@@ -16,7 +17,7 @@ let config: OdataToTsConfig = {
 try {
     Object.assign(config, JSON.parse(fs.readFileSync("odata-to-ts.config.json", "utf8")));
 } catch (error) {
-    console.error("odata-to-ts.config.json not found: ", error);
+    console.error("'odata-to-ts.config.json' not found: ", error);
     process.exit(1);
 }
 
@@ -26,4 +27,4 @@ let metadata = await loader.load();
 
 // transform metadata
 let transformer = new MetadataTransformer(metadata, config);
-transformer.transformEntityTypes();
+transformer.transform();

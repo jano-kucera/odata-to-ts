@@ -6,15 +6,26 @@ import { OdataToTsConfig } from "./config.js";
 export declare class MetadataTransformer {
     private metadata;
     private config;
-    /** Schemas from the metadata. */
-    private schemas;
+    /** Schema from the metadata. */
+    private schema;
     /**
      * Constructor.
      * @param metadata Metadata object.
      */
     constructor(metadata: xmlJs.Element, config: OdataToTsConfig);
     /**
-     * Transforms the entity types from the metadata.
+     * Transforms the metadata.
      */
-    transformEntityTypes(): void;
+    transform(): void;
+    /**
+     * Renders Entity and Complex types.
+     * @param file Output file.
+     * @param namespace Namespace of the types with dot at the end.
+     */
+    private renderTypes;
+    /**
+     * Renders Enums.
+     * @param file Output file.
+     */
+    private renderEnums;
 }
