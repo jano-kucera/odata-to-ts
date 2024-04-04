@@ -4,7 +4,6 @@ import { OdataToTsConfig } from "./config.js";
  * Metadata transformer.
  */
 export declare class MetadataTransformer {
-    private metadata;
     private config;
     /** Schema from the metadata. */
     private schema;

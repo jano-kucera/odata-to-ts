@@ -14,7 +14,7 @@ export class MetadataTransformer {
      * Constructor. 
      * @param metadata Metadata object.
      */
-    constructor(private metadata: xmlJs.Element, private config: OdataToTsConfig) {
+    constructor(metadata: xmlJs.Element, private config: OdataToTsConfig) {
         this.config = config;
         this.schema = metadata.elements
             ?.find(e => e.name === "edmx:Edmx")?.elements
@@ -73,17 +73,17 @@ export class MetadataTransformer {
             let members = e.elements.filter(m => m.name === "Member");
 
             switch (this.config.enumMode) {
-                case "string":
+                case "S":
                     file.write(`export enum ${name} {\n`);
                     members.forEach(m => file.write(`    ${m.attributes?.Name} = "${m.attributes?.Name}",\n`));
                     file.write(`}\n\n`);
                     break;
-                case "numeric":
+                case "N":
                     file.write(`export enum ${name} {\n`);
                     members.forEach(m => file.write(`    ${m.attributes?.Name} = ${m.attributes?.Value},\n`));
                     file.write(`}\n\n`);
                     break;
-                case "object":
+                case "O":
                     file.write(`export type ${name} = typeof ${name}[keyof typeof ${name}];\n`);
                     file.write(`export const ${name} = {\n`)
                     members.forEach(m => file.write(`    ${m.attributes?.Name}: ${m.attributes?.Value},\n`));

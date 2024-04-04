@@ -17,7 +17,9 @@ export class MetadataLoader {
      * @returns The metadata content transformed to object.
      */
     async load() {
-        let metadataXml = (await axios.get(this.config.xmlUrl)).data;
-        return xmlJs.xml2js(metadataXml, { compact: false });
+        let xmls = await Promise.all(this.config.xmlUrls.map(async (url) => {
+            return axios.get(url);
+        }));
+        return xmls.map(x => xmlJs.xml2js(x.data, { compact: false }));
     }
 }

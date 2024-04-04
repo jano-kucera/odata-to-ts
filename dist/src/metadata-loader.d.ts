@@ -14,5 +14,5 @@ export declare class MetadataLoader {
      * Loads the metadata content from the URL.
      * @returns The metadata content transformed to object.
      */
-    load(): Promise<xmlJs.Element>;
+    load(): Promise<xmlJs.Element[]>;
 }

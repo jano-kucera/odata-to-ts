@@ -9,8 +9,8 @@ import { OdataToTsConfig } from './src/config.js';
 // defaults
 let config: OdataToTsConfig = {
     outputDir: "odata",
-    enumMode: "string",
-    xmlUrl: "",
+    enumMode: "S",
+    xmlUrls: [],
 };
 
 // load user config
@@ -23,8 +23,10 @@ try {
 
 // load metadata
 let loader = new MetadataLoader(config);
-let metadata = await loader.load();
+let metadatas = await loader.load();
 
 // transform metadata
-let transformer = new MetadataTransformer(metadata, config);
-transformer.transform();
+metadatas.forEach(metadata => {
+    let transformer = new MetadataTransformer(metadata, config);
+    transformer.transform();
+});

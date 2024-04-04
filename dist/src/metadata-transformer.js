@@ -4,7 +4,6 @@ import { convertType } from "./map-type.js";
  * Metadata transformer.
  */
 export class MetadataTransformer {
-    metadata;
     config;
     /** Schema from the metadata. */
     schema;
@@ -13,7 +12,6 @@ export class MetadataTransformer {
      * @param metadata Metadata object.
      */
     constructor(metadata, config) {
-        this.metadata = metadata;
         this.config = config;
         this.config = config;
         this.schema = metadata.elements
@@ -62,17 +60,17 @@ export class MetadataTransformer {
             let name = e.attributes?.Name;
             let members = e.elements.filter(m => m.name === "Member");
             switch (this.config.enumMode) {
-                case "string":
+                case "S":
                     file.write(`export enum ${name} {\n`);
                     members.forEach(m => file.write(`    ${m.attributes?.Name} = "${m.attributes?.Name}",\n`));
                     file.write(`}\n\n`);
                     break;
-                case "numeric":
+                case "N":
                     file.write(`export enum ${name} {\n`);
                     members.forEach(m => file.write(`    ${m.attributes?.Name} = ${m.attributes?.Value},\n`));
                     file.write(`}\n\n`);
                     break;
-                case "object":
+                case "O":
                     file.write(`export type ${name} = typeof ${name}[keyof typeof ${name}];\n`);
                     file.write(`export const ${name} = {\n`);
                     members.forEach(m => file.write(`    ${m.attributes?.Name}: ${m.attributes?.Value},\n`));

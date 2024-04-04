@@ -5,8 +5,8 @@ import { MetadataTransformer } from "./src/metadata-transformer.js";
 // defaults
 let config = {
     outputDir: "odata",
-    enumMode: "string",
-    xmlUrl: "",
+    enumMode: "S",
+    xmlUrls: [],
 };
 // load user config
 try {
@@ -18,7 +18,9 @@ catch (error) {
 }
 // load metadata
 let loader = new MetadataLoader(config);
-let metadata = await loader.load();
+let metadatas = await loader.load();
 // transform metadata
-let transformer = new MetadataTransformer(metadata, config);
-transformer.transform();
+metadatas.forEach(metadata => {
+    let transformer = new MetadataTransformer(metadata, config);
+    transformer.transform();
+});
