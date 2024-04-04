@@ -4,8 +4,7 @@ Package for generating Typescript code from OData v4 metadata files. If you are 
 
 - easy to setup and use via npx
 - no dependencies - framework independent
-- types, enums, functions, actions
-- specify code style of your generated content
+- types, enums
 - generate types from multiple APIs
 
 ## Configuration
