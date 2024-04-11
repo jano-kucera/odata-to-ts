@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/odata-to-ts.svg)](https://badge.fury.io/js/odata-to-ts)
+
 # odata-to-ts
 
 Package for generating Typescript code from OData v4 metadata files. If you are looking for an all-in-one solution pure code-generator and not complex
