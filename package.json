@@ -17,6 +17,10 @@
   "license": "MIT",
   "main": "index.js",
   "name": "odata-to-ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jano-kucera/odata-to-ts.git"
+  },
   "scripts": {
     "start": "npx odata-to-ts",
     "tsc": "tsc --watch"
